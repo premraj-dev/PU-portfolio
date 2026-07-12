@@ -39,7 +39,7 @@ export default function Education() {
                 2024 – 2027
               </span>
               <span className="pill-badge bg-black/5 border border-black/15 text-black">
-                9.47 / 10 CGPA
+                9.54 / 10 CGPA
               </span>
             </div>
           </div>
