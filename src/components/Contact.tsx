@@ -56,7 +56,7 @@ export default function Contact() {
           transition={{ duration: 0.7 }}
         >
           <h2 className="section-header text-3xl md:text-4xl gradient-text mb-16">
-            Let's Build Something.
+            Let's Talk.
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
@@ -76,7 +76,7 @@ export default function Contact() {
                   className="flex items-center gap-3 text-sm text-text-secondary hover:text-black transition-colors"
                 >
                   <Mail size={16} className="text-black" />
-                  premrajumap01@gmail.com
+                  thepremraj01@gmail.com
                 </a>
                 <div className="flex items-center gap-3 text-sm">
                   <School size={16} className="text-black" />
