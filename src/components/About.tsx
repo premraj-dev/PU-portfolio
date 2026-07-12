@@ -3,7 +3,7 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useCountUp } from '../hooks/useCountUp';
 
 const stats = [
-  { label: 'CGPA', value: 9.47, suffix: '/10', decimals: 2 },
+  { label: 'CGPA', value: 9.54, suffix: '/10', decimals: 2 },
   { label: 'Internships', value: 3, suffix: '+', decimals: 0 },
   { label: 'Projects', value: 5, suffix: '+', decimals: 0 },
   { label: 'Research Papers', value: 1, suffix: '', decimals: 0 },
