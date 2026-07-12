@@ -90,7 +90,7 @@ export default function Contact() {
 
               <div className="flex gap-4">
                 <a
-                  href="[ADD YOUR GITHUB URL]"
+                  href="[https://github.com/premraj-dev]"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
@@ -99,7 +99,7 @@ export default function Contact() {
                   <Github size={18} />
                 </a>
                 <a
-                  href="[ADD YOUR LINKEDIN URL]"
+                  href="[www.linkedin.com/in/premraj-umap-028035375]"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
