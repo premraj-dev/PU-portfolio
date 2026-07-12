@@ -27,7 +27,7 @@ export default function LoadingScreen() {
               PU
             </motion.div>
             <div className="flex gap-2">
-              {'PREMRAJ UMAP-PORTFOLIO'.split('').map((char, i) => (
+              {'PREMRAJ UMAP'.split('').map((char, i) => (
                 <motion.span
                   key={i}
                   className="text-sm font-mono text-text-secondary tracking-widest"
