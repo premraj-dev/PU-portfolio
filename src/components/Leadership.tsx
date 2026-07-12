@@ -10,12 +10,6 @@ const roles = [
     oneLiner: 'Driving technical initiatives and AI workshops for the college science & technology community.',
   },
   {
-    icon: UserCheck,
-    title: 'Class Representative',
-    org: 'MIT ACS College',
-    oneLiner: 'Bridging communication between students and faculty, ensuring academic concerns are addressed.',
-  },
-  {
     icon: Users,
     title: 'Team Leader',
     org: 'FabLab Internship, Vigyan Ashram',
