@@ -87,11 +87,10 @@ export default function Hero() {
           variants={fadeUp}
           className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight max-w-4xl mb-6"
         >
-          Building{' '}
-          <span className="gradient-text">Intelligent Systems</span>
-          {' '}That Solve Real-World Problems.
-        </motion.h1>
-
+          Premraj's{' '}
+        <span className="gradient-text">Portfolio.</span>
+      </motion.h1>
+        
         <motion.div variants={fadeUp} className="mb-8">
           <div className="text-lg sm:text-xl text-text-secondary font-medium h-8">
             <Typewriter
@@ -118,7 +117,6 @@ export default function Hero() {
           <span className="flex items-center gap-2"><MapPin size={16} className="text-black" /> Pune, India</span>
           <span className="flex items-center gap-2"><GraduationCap size={16} className="text-black" /> CGPA 9.47/10</span>
           <span className="flex items-center gap-2"><Trophy size={16} className="text-black" /> Technical Head</span>
-          <span className="flex items-center gap-2"><Users size={16} className="text-black" /> Class Rep</span>
         </motion.div>
 
         <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
