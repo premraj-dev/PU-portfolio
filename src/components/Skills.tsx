@@ -4,25 +4,44 @@ import { Code2, BrainCircuit, MessageSquare } from 'lucide-react';
 
 const skillGroups = [
   {
-    title: 'Programming & Tools',
-    icon: Code2,
-    skills: ['Python', 'SQL', 'Git', 'GitHub'],
+    title: 'Core Languages',
+    skills: ['Python', 'R', 'SQL', 'JavaScript', 'TypeScript'],
   },
   {
-    title: 'AI & Machine Learning',
-    icon: BrainCircuit,
+    title: 'Machine Learning',
     skills: [
-      'Machine Learning',
-      'Artificial Intelligence',
+      'PyTorch',
+      'TensorFlow',
       'Scikit-Learn',
-      'Data Analysis',
+      'HuggingFace',
+      'XGBoost',
+      'MLflow',
+    ],
+  },
+  {
+    title: 'Data Operations',
+    skills: [
       'Pandas',
-      'NumPy',
+      'Numpy',
+      'Polars',
+      'Apache Spark',
+      'PostgreSQL',
+    ],
+  },
+  {
+    title: 'Architecture',
+    skills: [
+      'Docker',
+      'FastAPI',
+      'Flask',
+      'AWS',
+      'Git',
+      'CI/CD',
+      'VS Code',
     ],
   },
   {
     title: 'Soft Skills',
-    icon: MessageSquare,
     skills: [
       'Leadership',
       'Communication',
