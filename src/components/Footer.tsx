@@ -40,7 +40,7 @@ export default function Footer() {
 
           <div className="flex gap-3">
             <a
-              href="[ADD YOUR GITHUB URL]"
+              href="[https://github.com/premraj-dev]"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-lg bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
@@ -49,7 +49,7 @@ export default function Footer() {
               <Github size={16} />
             </a>
             <a
-              href="[ADD YOUR LINKEDIN URL]"
+              href="[www.linkedin.com/in/premraj-umap-028035375]"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-lg bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
@@ -58,7 +58,7 @@ export default function Footer() {
               <Linkedin size={16} />
             </a>
             <a
-              href="mailto:premrajumap01@gmail.com"
+              href="mailto:thepremraj01@gmail.com"
               className="w-9 h-9 rounded-lg bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
               aria-label="Email"
             >
