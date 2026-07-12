@@ -5,11 +5,9 @@ import { Award, Zap, GraduationCap, FlaskConical, FileText, Trophy, CircleDot } 
 const achievements = [
   { icon: Award, title: '3rd Rank in FY', context: 'Academic Excellence' },
   { icon: Zap, title: 'Technical Head', context: 'Scitect Club' },
-  { icon: GraduationCap, title: 'Class Representative', context: 'CR' },
   { icon: FlaskConical, title: 'Team Leader', context: 'Vigyan Ashram FabLab' },
   { icon: FileText, title: 'Research Paper Presenter', context: 'National Conference' },
   { icon: Trophy, title: 'Kabaddi Competition Winner', context: 'Sports' },
-  { icon: CircleDot, title: 'Volleyball Runner-Up', context: 'Sports' },
 ];
 
 export default function Achievements() {
