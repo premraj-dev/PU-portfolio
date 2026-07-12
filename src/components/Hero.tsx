@@ -83,11 +83,10 @@ export default function Hero() {
           </span>
         </motion.div>
 
-        <motion.h1 
-          className="font-serif text-6xl md:text-8xl font-normal tracking-tight text-text-primary leading-tight">
-        Premraj's <br />
-        Portfolio.
-      </motion.h1>
+        <motion.h1 className="font-serif text-6xl md:text-8xl font-normal tracking-tight text-text-primary leading-tight">
+  Premraj's <br />
+  Portfolio.
+</motion.h1>>
         
         <motion.div variants={fadeUp} className="mb-8">
           <div className="text-lg sm:text-xl text-text-secondary font-medium h-8">
