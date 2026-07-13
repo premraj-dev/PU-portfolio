@@ -13,10 +13,16 @@ import {
   School,
 } from 'lucide-react';
 
-// [ADD YOUR EMAILJS CREDENTIALS]
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+// Initialize EmailJS with your credentials
+// Get these from https://dashboard.emailjs.com/
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
+
+// Initialize EmailJS only if credentials are provided
+if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+}
 
 export default function Contact() {
   const { ref, isVisible } = useScrollReveal();
@@ -28,6 +34,13 @@ export default function Contact() {
     e.preventDefault();
     setSending(true);
     setError('');
+
+    // Check if EmailJS is configured
+    if (EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID') {
+      setError('Email service not configured. Please contact the site owner.');
+      setSending(false);
+      return;
+    }
 
     try {
       await emailjs.sendForm(
@@ -72,7 +85,7 @@ export default function Contact() {
                   <span className="text-text-secondary">Pune, Maharashtra, India</span>
                 </div>
                 <a
-                  href="mailto:premrajumap01@gmail.com"
+                  href="mailto:thepremraj01@gmail.com"
                   className="flex items-center gap-3 text-sm text-text-secondary hover:text-black transition-colors"
                 >
                   <Mail size={16} className="text-black" />
@@ -90,7 +103,7 @@ export default function Contact() {
 
               <div className="flex gap-4">
                 <a
-                  href="[https://github.com/premraj-dev]"
+                  href="https://github.com/premraj-dev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
@@ -99,7 +112,7 @@ export default function Contact() {
                   <Github size={18} />
                 </a>
                 <a
-                  href="[www.linkedin.com/in/premraj-umap-028035375]"
+                  href="https://www.linkedin.com/in/premraj-umap-028035375"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
@@ -121,7 +134,7 @@ export default function Contact() {
                     name="name"
                     type="text"
                     required
-                    className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10 transition-all"
+                    className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10"
                     placeholder="Your name"
                   />
                 </div>
@@ -134,7 +147,7 @@ export default function Contact() {
                     name="email"
                     type="email"
                     required
-                    className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10 transition-all"
+                    className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -149,7 +162,7 @@ export default function Contact() {
                   name="subject"
                   type="text"
                   required
-                  className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10 transition-all"
+                  className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10"
                   placeholder="What's this about?"
                 />
               </div>
@@ -163,7 +176,7 @@ export default function Contact() {
                   name="message"
                   required
                   rows={5}
-                  className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10 transition-all resize-none"
+                  className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10"
                   placeholder="Your message..."
                 />
               </div>
