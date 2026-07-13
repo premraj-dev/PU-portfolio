@@ -23,8 +23,8 @@ const projects: Project[] = [
     description:
       'AI-powered identity verification & fraud detection platform. OCR, facial verification, fraud analysis, document validation, audit tracking.',
     tech: ['Python', 'FastAPI', 'ML', 'OCR', 'Computer Vision', 'PostgreSQL', 'JWT'],
-    github: '[ADD YOUR GITHUB URL]',
-    demo: '[ADD YOUR DEMO URL]',
+    github: 'https://github.com/premraj-dev',
+    demo: '',
   },
   {
     title: 'Crypto Price Prediction System',
@@ -33,7 +33,7 @@ const projects: Project[] = [
     description:
       'ML-based crypto forecasting using historical market data and predictive analytics.',
     tech: ['Python', 'Scikit-Learn', 'Pandas', 'NumPy', 'Data Analytics'],
-    github: '[ADD YOUR GITHUB URL]',
+    github: 'https://github.com/premraj-dev',
   },
   {
     title: 'ML Research Project',
@@ -42,7 +42,7 @@ const projects: Project[] = [
     description:
       'Interpretable machine learning research — transparency and explainability of ML models.',
     tech: ['Python', 'Research', 'Statistics', 'ML'],
-    github: '[ADD YOUR GITHUB URL]',
+    github: 'https://github.com/premraj-dev',
   },
 ];
 
