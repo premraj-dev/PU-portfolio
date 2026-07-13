@@ -60,6 +60,21 @@ export default function Hero() {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleResumeDownload = () => {
+    // Check if resume exists, if not navigate to a placeholder message
+    const resumePath = '/resume.pdf';
+    const link = document.createElement('a');
+    link.href = resumePath;
+    link.download = 'Premraj_Umap_Resume.pdf';
+    
+    // Add error handling for missing file
+    link.onerror = () => {
+      alert('Resume file not found. Please contact for resume.');
+    };
+    
+    link.click();
+  };
+
   return (
     <section id="hero" className="relative min-h-screen flex items-center overflow-hidden">
       <Particles
@@ -125,12 +140,8 @@ export default function Hero() {
           </button>
           <button
             className="ghost-btn px-6 py-3 rounded-lg font-semibold text-text-primary text-sm flex items-center gap-2 cursor-pointer"
-            onClick={() => {
-              const link = document.createElement('a');
-              link.href = '/resume.pdf';
-              link.download = 'Premraj_Umap_Resume.pdf';
-              link.click();
-            }}
+            onClick={handleResumeDownload}
+            title="Download Resume (Add resume.pdf to public folder)"
           >
             Download Resume <ArrowDown size={16} />
           </button>
