@@ -1,28 +1,37 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
-export function useCountUp(end: number, duration = 2000, isVisible = true) {
+export function useCountUp(targetValue: number, duration: number, shouldStart: boolean) {
   const [count, setCount] = useState(0);
+  const startValueRef = useRef(0);
+  const startTimeRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!isVisible) return;
+    if (!shouldStart) {
+      setCount(0);
+      startValueRef.current = 0;
+      startTimeRef.current = null;
+      return;
+    }
 
-    let startTime: number | null = null;
-    let rafId: number;
+    const animate = (currentTime: number) => {
+      if (startTimeRef.current === null) {
+        startTimeRef.current = currentTime;
+      }
 
-    const animate = (timestamp: number) => {
-      if (!startTime) startTime = timestamp;
-      const progress = Math.min((timestamp - startTime) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(eased * end));
+      const elapsed = currentTime - startTimeRef.current;
+      const progress = Math.min(elapsed / duration, 1);
+      const newCount = Math.floor(startValueRef.current + (targetValue - startValueRef.current) * progress);
+
+      setCount(newCount);
 
       if (progress < 1) {
-        rafId = requestAnimationFrame(animate);
+        requestAnimationFrame(animate);
       }
     };
 
-    rafId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafId);
-  }, [end, duration, isVisible]);
+    const frameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frameId);
+  }, [targetValue, duration, shouldStart]);
 
   return count;
 }

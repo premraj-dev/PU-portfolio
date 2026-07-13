@@ -40,7 +40,7 @@ export default function Footer() {
 
           <div className="flex gap-3">
             <a
-              href="[https://github.com/premraj-dev]"
+              href="https://github.com/premraj-dev"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-lg bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
@@ -49,7 +49,7 @@ export default function Footer() {
               <Github size={16} />
             </a>
             <a
-              href="[www.linkedin.com/in/premraj-umap-028035375]"
+              href="https://www.linkedin.com/in/premraj-umap-028035375"
               target="_blank"
               rel="noopener noreferrer"
               className="w-9 h-9 rounded-lg bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"

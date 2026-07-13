@@ -45,14 +45,14 @@ export default function Research() {
               National Level Students Conference on IT, Commerce and Management
             </p>
 
-            <a
-              href="[ADD YOUR PAPER URL]"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-text-secondary transition-colors"
+            <button
+              className="inline-flex items-center gap-2 text-sm font-semibold text-black hover:text-text-secondary transition-colors cursor-pointer"
+              onClick={() => {
+                alert('Paper URL not yet configured. Please add your research paper link.');
+              }}
             >
               View Paper <ExternalLink size={14} />
-            </a>
+            </button>
           </div>
         </motion.div>
       </div>

@@ -4,10 +4,12 @@ import { Code2, BrainCircuit, MessageSquare } from 'lucide-react';
 
 const skillGroups = [
   {
+    icon: Code2,
     title: 'Core Languages',
     skills: ['Python', 'R', 'SQL', 'JavaScript', 'TypeScript'],
   },
   {
+    icon: BrainCircuit,
     title: 'Machine Learning',
     skills: [
       'PyTorch',
@@ -19,6 +21,7 @@ const skillGroups = [
     ],
   },
   {
+    icon: Code2,
     title: 'Data Operations',
     skills: [
       'Pandas',
@@ -29,6 +32,7 @@ const skillGroups = [
     ],
   },
   {
+    icon: Code2,
     title: 'Architecture',
     skills: [
       'Docker',
@@ -41,6 +45,7 @@ const skillGroups = [
     ],
   },
   {
+    icon: MessageSquare,
     title: 'Soft Skills',
     skills: [
       'Leadership',
