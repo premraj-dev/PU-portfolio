@@ -5,7 +5,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#ffffff',
+        bg: {
+          DEFAULT: '#ffffff',
+          50: '#fafafa',
+          100: '#f5f5f5',
+        },
         surface: 'rgba(0,0,0,0.03)',
         primary: '#000000',
         secondary: '#555555',
