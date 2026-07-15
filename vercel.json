@@ -3,8 +3,8 @@
   "devCommand": "npm run dev",
   "outputDirectory": "dist",
   "env": {
-    "VITE_EMAILJS_SERVICE_ID": "@emailjs_service_id",
-    "VITE_EMAILJS_TEMPLATE_ID": "@emailjs_template_id",
-    "VITE_EMAILJS_PUBLIC_KEY": "@emailjs_public_key"
+    "VITE_EMAILJS_SERVICE_ID": "service_btrui0e",
+    "VITE_EMAILJS_TEMPLATE_ID": "template_fa30blj",
+    "VITE_EMAILJS_PUBLIC_KEY": "c2EW2A7MMuwItHaSn"
   }
 }
