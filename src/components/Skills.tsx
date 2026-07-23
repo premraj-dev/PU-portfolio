@@ -1,9 +1,13 @@
-import { motion } from 'framer-motion';
+import React from 'react';
+import { motion, Variants } from 'framer-motion';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import * as Lucide from 'lucide-react';
 
-// Hardcoded fallback SVGs in case your project's lucide-react has dependency/version errors
-const FALLBACK_SVGS = {
+type IconName = 'Code2' | 'BrainCircuit' | 'MessageSquare' | 'Database' | 'Server';
+
+type FallbackSvgComponent = React.FC<React.SVGProps<SVGSVGElement>>;
+
+const FALLBACK_SVGS: Record<IconName, FallbackSvgComponent> = {
   Code2: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
   ),
@@ -18,10 +22,16 @@ const FALLBACK_SVGS = {
   ),
   Server: (props) => (
     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}><rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/></svg>
-  )
+  ),
 };
 
-const skillGroups = [
+interface SkillGroup {
+  iconName: IconName;
+  title: string;
+  skills: string[];
+}
+
+const skillGroups: SkillGroup[] = [
   {
     iconName: 'Code2',
     title: 'Core Languages',
@@ -49,8 +59,7 @@ const skillGroups = [
   },
 ];
 
-// Framer Motion Animation Settings
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -58,7 +67,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { 
     opacity: 1, 
@@ -70,21 +79,17 @@ const cardVariants = {
 export default function Skills() {
   const { ref, isVisible } = useScrollReveal();
 
-  // Helper to safely render the correct icon without throwing undefined errors
-  const renderIcon = (iconName) => {
-    const LucideIcon = Lucide[iconName];
+  const renderIcon = (iconName: IconName) => {
+    const LucideIcon = Lucide[iconName] as React.ComponentType<{ size?: number; className?: string }> | undefined;
     const FallbackSvg = FALLBACK_SVGS[iconName];
 
-    // 1. Try rendering from standard imported Lucide package
     if (LucideIcon) {
       return <LucideIcon size={20} className="text-black" />;
     }
-    // 2. Fall back to custom SVG if Lucide package has export/import mismatches
     if (FallbackSvg) {
       const CustomSvg = FallbackSvg;
       return <CustomSvg className="text-black" />;
     }
-    // 3. Absolute failsafe to prevent a crash if both are missing
     return <span className="text-sm font-bold text-black">⚡</span>;
   };
 
@@ -95,7 +100,7 @@ export default function Skills() {
           ref={ref}
           variants={containerVariants}
           initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
+          animate={isVisible ? 'visible' : 'hidden'}
         >
           <motion.h2 
             variants={cardVariants}
