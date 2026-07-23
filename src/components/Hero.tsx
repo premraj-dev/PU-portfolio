@@ -70,10 +70,10 @@ export default function Hero() {
         link.download = 'Premraj_Umap_Resume.pdf';
         link.click();
       } else {
-        alert('Resume file is being updated. Please request directly via the contact form!');
+        alert('Resume file is currently being updated. Please request directly via the contact form!');
       }
     } catch {
-      alert('Resume file is being updated. Please request directly via the contact form!');
+      alert('Resume file is currently being updated. Please request directly via the contact form!');
     }
   };
 
@@ -104,7 +104,7 @@ export default function Hero() {
           Premraj's <br />
           Portfolio.
         </h1>
-        
+
         <motion.div variants={fadeUp} className="mb-8">
           <div className="text-lg sm:text-xl text-text-secondary font-medium h-8 flex items-center">
             <Typewriter
@@ -130,9 +130,15 @@ export default function Hero() {
           variants={fadeUp}
           className="flex flex-wrap gap-4 sm:gap-6 text-sm text-text-secondary mb-10"
         >
-          <span className="flex items-center gap-2"><MapPin size={16} className="text-black" /> Pune, India</span>
-          <span className="flex items-center gap-2"><GraduationCap size={16} className="text-black" /> CGPA 9.53/10</span>
-          <span className="flex items-center gap-2"><Trophy size={16} className="text-black" /> Technical Head</span>
+          <span className="flex items-center gap-2">
+            <MapPin size={16} className="text-black" /> Pune, India
+          </span>
+          <span className="flex items-center gap-2">
+            <GraduationCap size={16} className="text-black" /> CGPA 9.53/10
+          </span>
+          <span className="flex items-center gap-2">
+            <Trophy size={16} className="text-black" /> Technical Head
+          </span>
         </motion.div>
 
         <motion.div variants={fadeUp} className="flex flex-wrap gap-4">
