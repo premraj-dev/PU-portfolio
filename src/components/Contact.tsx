@@ -91,9 +91,6 @@ export default function Contact() {
                   <Mail size={16} className="text-black" />
                   thepremraj01@gmail.com
                 </a>
-                <div className="flex items-center gap-3 text-sm">
-                  <School size={16} className="text-black" />
-                  <span className="text-text-secondary">5301598@mitacsc.edu.in</span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Phone size={16} className="text-black" />
