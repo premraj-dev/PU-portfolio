@@ -37,7 +37,7 @@ export default function About() {
           transition={{ duration: 0.7 }}
         >
           <h2 className="section-header text-3xl md:text-4xl gradient-text mb-16">
-            Research. Leadership. Innovation.
+            Innovation.
           </h2>
 
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-16">
