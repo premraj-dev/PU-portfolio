@@ -4,7 +4,6 @@ import { ParticlesProvider } from '@tsparticles/react';
 import { loadSlim } from '@tsparticles/slim';
 import { tsParticles } from '@tsparticles/engine';
 import LoadingScreen from './components/LoadingScreen';
-import CustomCursor from './components/CustomCursor';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -52,7 +51,6 @@ export default function App() {
   return (
     <ParticlesProvider init={particlesInit}>
       <LoadingScreen />
-      <CustomCursor />
       <Navigation />
       <main className={loaded ? 'opacity-100' : 'opacity-0'} style={{ transition: 'opacity 0.5s ease' }}>
         <Hero />
