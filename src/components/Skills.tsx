@@ -25,27 +25,27 @@ const skillGroups = [
   {
     iconName: 'Code2',
     title: 'Core Languages',
-    skills: ['Python', 'R', 'SQL', 'JavaScript', 'TypeScript'],
+    skills: ['Python', 'R', 'SQL'],
   },
   {
     iconName: 'BrainCircuit',
     title: 'Machine Learning',
-    skills: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'HuggingFace', 'XGBoost', 'MLflow'],
+    skills: ['PyTorch', 'TensorFlow', 'Scikit-Learn', 'XGBoost'],
   },
   {
     iconName: 'Database',
     title: 'Data Operations',
-    skills: ['Pandas', 'Numpy', 'Polars', 'Apache Spark', 'PostgreSQL'],
+    skills: ['Pandas', 'Numpy', 'Polars', 'PostgreSQL'],
   },
   {
     iconName: 'Server',
     title: 'Architecture',
-    skills: ['Docker', 'FastAPI', 'Flask', 'AWS', 'Git', 'CI/CD', 'VS Code'],
+    skills: ['Docker', 'FastAPI', 'AWS', 'Git', 'CI/CD'],
   },
   {
     iconName: 'MessageSquare',
     title: 'Soft Skills',
-    skills: ['Leadership', 'Communication', 'Problem Solving', 'Teamwork', 'Critical Thinking'],
+    skills: ['Leadership', 'Critical Thinking', 'Problem Solving', 'Teamwork'],
   },
 ];
 
