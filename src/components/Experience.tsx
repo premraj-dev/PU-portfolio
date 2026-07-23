@@ -54,7 +54,7 @@ export default function Experience() {
           </h2>
 
           <div className="relative max-w-4xl mx-auto">
-            {/* Vertical Timeline Bar */}
+            {/* Vertical Timeline Line */}
             <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-black via-black/30 to-transparent md:-translate-x-px" />
 
             {experiences.map((exp, i) => {
@@ -65,29 +65,39 @@ export default function Experience() {
                   className={`relative flex flex-col md:flex-row mb-12 last:mb-0 ${
                     isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
-                  initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
+                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.6, delay: i * 0.15 }}
                 >
-                  {/* Timeline Dot */}
+                  {/* Timeline Dot Indicator */}
                   <div className="absolute left-0 md:left-1/2 w-3 h-3 rounded-full bg-black border-2 border-bg -translate-x-[5px] md:-translate-x-[6px] top-8 z-10">
-                    <div className="absolute inset-0 rounded-full bg-black/30 animate-ping" />
+                    {exp.tag && (
+                      <div className="absolute inset-0 rounded-full bg-black/40 animate-ping" />
+                    )}
                   </div>
 
-                  {/* Spacer Column */}
+                  {/* Spacer Column for Alternating Layout */}
                   <div className="hidden md:block md:w-1/2" />
 
-                  {/* Card Body */}
-                  <div className={`ml-8 md:ml-0 md:w-1/2 ${isLeft ? 'md:pr-12' : 'md:pl-12'}`}>
-                    <div className="glass-card glass-card-hover p-6">
+                  {/* Experience Card */}
+                  <div
+                    className={`ml-8 md:ml-0 md:w-1/2 ${
+                      isLeft ? 'md:pr-12' : 'md:pl-12'
+                    }`}
+                  >
+                    <div className="glass-card glass-card-hover p-6 rounded-2xl border border-black/10 bg-white/5 backdrop-blur-sm transition-all duration-300">
                       <div className="flex items-center gap-3 mb-3">
-                        <div className="w-8 h-8 rounded-lg bg-black/5 flex items-center justify-center flex-shrink-0">
+                        <div className="w-8 h-8 rounded-lg bg-black/5 flex items-center justify-center flex-shrink-0 border border-black/10">
                           <Briefcase size={16} className="text-black" />
                         </div>
                         <div>
-                          <h3 className="font-heading font-semibold text-text-primary">{exp.role}</h3>
-                          <p className="text-sm text-black font-mono">{exp.company}</p>
+                          <h3 className="font-heading font-semibold text-text-primary text-base">
+                            {exp.role}
+                          </h3>
+                          <p className="text-xs text-black font-mono font-medium">
+                            {exp.company}
+                          </p>
                         </div>
                       </div>
 
@@ -95,12 +105,12 @@ export default function Experience() {
                         {exp.description}
                       </p>
 
-                      <div className="flex items-center gap-3">
+                      <div className="flex items-center gap-3 flex-wrap">
                         <span className="flex items-center gap-1.5 text-xs text-text-secondary">
                           <Calendar size={12} /> {exp.duration}
                         </span>
                         {exp.tag && (
-                          <span className="pill-badge bg-black/5 border border-black/15 text-black">
+                          <span className="pill-badge inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider px-2 py-0.5 rounded-full bg-black/5 border border-black/15 text-black font-semibold">
                             <Sparkles size={10} /> {exp.tag}
                           </span>
                         )}
