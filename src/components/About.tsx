@@ -3,26 +3,26 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import { useCountUp } from '../hooks/useCountUp';
 
 const stats = [
-  { label: 'CGPA', value: 9.54, suffix: '/10', decimals: 2 },
+  { label: 'CGPA', value: 9.53, suffix: '/10', decimals: 2 },
   { label: 'Internships', value: 3, suffix: '+', decimals: 0 },
   { label: 'Projects', value: 5, suffix: '+', decimals: 0 },
-  { label: 'Research Papers', value: 1, suffix: '', decimals: 0 },
+  { label: 'Research Paper', value: 1, suffix: '', decimals: 0 },
 ];
 
 function StatCard({ label, value, suffix, decimals }: { label: string; value: number; suffix: string; decimals: number }) {
   const { ref, isVisible } = useScrollReveal();
   
-  // Math.round fixes the floating-point inaccuracy (e.g., 9.54 * 100 = 953.9999999999999)
+  // Math.round fixes the floating-point inaccuracy (e.g., 9.53 * 100 = 953)
   const target = Math.round(value * (decimals > 0 ? 100 : 1));
   const count = useCountUp(target, 2000, isVisible);
   const display = decimals > 0 ? (count / 100).toFixed(decimals) : count;
 
   return (
-    <div ref={ref} className="glass-card glass-card-hover p-6 text-center">
+    <div ref={ref} className="glass-card glass-card-hover p-6 text-center flex flex-col justify-center">
       <div className="text-3xl md:text-4xl font-heading font-bold gradient-text mb-2">
         {display}{suffix}
       </div>
-      <div className="text-sm text-text-secondary font-mono">{label}</div>
+      <div className="text-xs md:text-sm text-text-secondary font-mono">{label}</div>
     </div>
   );
 }
@@ -69,6 +69,18 @@ export default function About() {
                   "AI should not only be studied — it should be built, tested, and deployed."
                 </p>
               </blockquote>
+
+              <div className="flex flex-wrap gap-2 pt-4">
+                <span className="pill-badge bg-black/5 border border-black/10 text-text-primary">
+                  Production ML
+                </span>
+                <span className="pill-badge bg-black/5 border border-black/10 text-text-primary">
+                  Model Interpretability
+                </span>
+                <span className="pill-badge bg-black/5 border border-black/10 text-text-primary">
+                  Data Pipelines
+                </span>
+              </div>
             </div>
 
             <div className="lg:col-span-2 grid grid-cols-2 gap-4">
