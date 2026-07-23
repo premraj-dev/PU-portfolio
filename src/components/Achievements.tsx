@@ -1,13 +1,28 @@
 import { motion } from 'framer-motion';
 import { useScrollReveal } from '../hooks/useScrollReveal';
-import { Award, Zap, GraduationCap, FlaskConical, FileText, Trophy, CircleDot } from 'lucide-react';
+import { Award, Zap, FlaskConical, FileText, Trophy } from 'lucide-react';
 
-const achievements = [
-  { icon: Award, title: '3rd Rank in FY', context: 'Academic Excellence' },
-  { icon: Zap, title: 'Technical Head', context: 'Scitect Club' },
-  { icon: FlaskConical, title: 'Team Leader', context: 'Vigyan Ashram FabLab' },
-  { icon: FileText, title: 'Research Paper Presenter', context: 'National Conference' },
-  { icon: Trophy, title: 'Kabaddi Competition Winner', context: 'Sports' },
+const milestoneCategories = [
+  {
+    category: 'Academic & Research',
+    items: [
+      { icon: Award, title: '3rd Rank in FY', context: 'Academic Excellence' },
+      { icon: FileText, title: 'Research Paper Presenter', context: 'National Conference' },
+    ],
+  },
+  {
+    category: 'Leadership & Roles',
+    items: [
+      { icon: Zap, title: 'Technical Head', context: 'Scitect Club' },
+      { icon: FlaskConical, title: 'Team Leader', context: 'Vigyan Ashram FabLab' },
+    ],
+  },
+  {
+    category: 'Beyond Academics',
+    items: [
+      { icon: Trophy, title: 'Kabaddi Competition Winner', context: 'Sports & Athletics' },
+    ],
+  },
 ];
 
 export default function Achievements() {
@@ -26,23 +41,41 @@ export default function Achievements() {
             Milestones
           </h2>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-            {achievements.map((a, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {milestoneCategories.map((group, groupIdx) => (
               <motion.div
-                key={a.title}
-                className="glass-card glass-card-hover p-5 flex flex-col items-center text-center"
+                key={group.category}
+                className="glass-card p-6 flex flex-col justify-between"
                 initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07, duration: 0.4 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: groupIdx * 0.12, duration: 0.5 }}
               >
-                <div className="w-10 h-10 rounded-xl bg-black/5 flex items-center justify-center mb-3">
-                  <a.icon size={20} className="text-black" />
+                <div>
+                  <h3 className="text-xs font-mono font-semibold text-text-secondary uppercase tracking-wider mb-6 pb-2 border-b border-black/10">
+                    {group.category}
+                  </h3>
+
+                  <div className="space-y-4">
+                    {group.items.map((item, itemIdx) => (
+                      <div
+                        key={itemIdx}
+                        className="flex items-center gap-4 p-3 rounded-xl bg-black/[0.02] border border-black/[0.05] hover:bg-black/[0.04] transition-colors"
+                      >
+                        <div className="w-10 h-10 rounded-lg bg-black/5 flex items-center justify-center flex-shrink-0">
+                          <item.icon size={20} className="text-black" />
+                        </div>
+                        <div>
+                          <h4 className="text-sm font-heading font-semibold text-text-primary">
+                            {item.title}
+                          </h4>
+                          <span className="text-xs text-text-secondary">
+                            {item.context}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <h4 className="text-sm font-heading font-semibold text-text-primary mb-1">
-                  {a.title}
-                </h4>
-                <span className="text-xs text-text-secondary">{a.context}</span>
               </motion.div>
             ))}
           </div>
