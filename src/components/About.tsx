@@ -11,7 +11,10 @@ const stats = [
 
 function StatCard({ label, value, suffix, decimals }: { label: string; value: number; suffix: string; decimals: number }) {
   const { ref, isVisible } = useScrollReveal();
-  const count = useCountUp(value * (decimals > 0 ? 100 : 1), 2000, isVisible);
+  
+  // Math.round fixes the floating-point inaccuracy (e.g., 9.54 * 100 = 953.9999999999999)
+  const target = Math.round(value * (decimals > 0 ? 100 : 1));
+  const count = useCountUp(target, 2000, isVisible);
   const display = decimals > 0 ? (count / 100).toFixed(decimals) : count;
 
   return (
