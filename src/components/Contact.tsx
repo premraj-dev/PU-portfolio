@@ -10,7 +10,6 @@ import {
   Linkedin,
   Send,
   CheckCircle,
-  School,
 } from 'lucide-react';
 
 // Initialize EmailJS with your credentials
@@ -91,10 +90,14 @@ export default function Contact() {
                   <Mail size={16} className="text-black" />
                   thepremraj01@gmail.com
                 </a>
-                </div>
                 <div className="flex items-center gap-3 text-sm">
                   <Phone size={16} className="text-black" />
-                  <span className="text-text-secondary">+91 7020244035</span>
+                  <a 
+                    href="tel:+917020244035" 
+                    className="text-text-secondary hover:text-black transition-colors"
+                  >
+                    +91 7020244035
+                  </a>
                 </div>
               </div>
 
