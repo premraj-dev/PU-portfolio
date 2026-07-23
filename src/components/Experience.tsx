@@ -2,26 +2,37 @@ import { motion } from 'framer-motion';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Briefcase, Calendar, Sparkles } from 'lucide-react';
 
-const experiences = [
+interface ExperienceItem {
+  role: string;
+  company: string;
+  duration: string;
+  description: string;
+  tag: string | null;
+}
+
+const experiences: ExperienceItem[] = [
   {
     role: 'Machine Learning Intern',
     company: 'Intern Spot Innovation Pvt Ltd',
     duration: 'Feb 2026 – Apr 2026',
-    description: 'Developed ML workflows, data preprocessing pipelines, and predictive models for real-world AI applications in production environments.',
+    description:
+      'Developed ML workflows, data preprocessing pipelines, and predictive models for real-world AI applications in production environments.',
     tag: 'Latest',
   },
   {
     role: 'AI/ML Virtual Intern',
     company: 'EduSkills AICTE + Google for Developers',
     duration: 'Apr 2025 – Jun 2025',
-    description: 'Completed a 10-week intensive program covering ML pipelines, model training, and AI-driven problem-solving with Google tools.',
+    description:
+      'Completed a 10-week intensive program covering ML pipelines, model training, and AI-driven problem-solving with Google tools.',
     tag: null,
   },
   {
     role: 'FabLab Intern',
     company: 'Vigyan Ashram',
     duration: 'Feb 2025 – Mar 2025',
-    description: 'Led prototype development and innovation-driven projects with hands-on technical implementation in a maker environment.',
+    description:
+      'Led prototype development and innovation-driven projects with hands-on technical implementation in a maker environment.',
     tag: null,
   },
 ];
@@ -43,14 +54,14 @@ export default function Experience() {
           </h2>
 
           <div className="relative max-w-4xl mx-auto">
-            {/* Timeline line */}
+            {/* Vertical Timeline Bar */}
             <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-black via-black/30 to-transparent md:-translate-x-px" />
 
             {experiences.map((exp, i) => {
               const isLeft = i % 2 === 0;
               return (
                 <motion.div
-                  key={i}
+                  key={`${exp.company}-${exp.role}`}
                   className={`relative flex flex-col md:flex-row mb-12 last:mb-0 ${
                     isLeft ? 'md:flex-row' : 'md:flex-row-reverse'
                   }`}
@@ -59,15 +70,15 @@ export default function Experience() {
                   viewport={{ once: true, margin: '-50px' }}
                   transition={{ duration: 0.6, delay: i * 0.15 }}
                 >
-                  {/* Timeline dot */}
+                  {/* Timeline Dot */}
                   <div className="absolute left-0 md:left-1/2 w-3 h-3 rounded-full bg-black border-2 border-bg -translate-x-[5px] md:-translate-x-[6px] top-8 z-10">
                     <div className="absolute inset-0 rounded-full bg-black/30 animate-ping" />
                   </div>
 
-                  {/* Spacer */}
+                  {/* Spacer Column */}
                   <div className="hidden md:block md:w-1/2" />
 
-                  {/* Card */}
+                  {/* Card Body */}
                   <div className={`ml-8 md:ml-0 md:w-1/2 ${isLeft ? 'md:pr-12' : 'md:pl-12'}`}>
                     <div className="glass-card glass-card-hover p-6">
                       <div className="flex items-center gap-3 mb-3">
