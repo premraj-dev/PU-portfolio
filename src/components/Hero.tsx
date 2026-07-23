@@ -60,17 +60,21 @@ export default function Hero() {
     document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleResumeDownload = () => {
+  const handleResumeDownload = async () => {
     const resumePath = '/resume.pdf';
-    const link = document.createElement('a');
-    link.href = resumePath;
-    link.download = 'Premraj_Umap_Resume.pdf';
-    
-    link.onerror = () => {
-      alert('Resume file not found. Please contact for resume.');
-    };
-    
-    link.click();
+    try {
+      const response = await fetch(resumePath, { method: 'HEAD' });
+      if (response.ok) {
+        const link = document.createElement('a');
+        link.href = resumePath;
+        link.download = 'Premraj_Umap_Resume.pdf';
+        link.click();
+      } else {
+        alert('Resume file is being updated. Please request directly via the contact form!');
+      }
+    } catch {
+      alert('Resume file is being updated. Please request directly via the contact form!');
+    }
   };
 
   return (
@@ -90,19 +94,19 @@ export default function Hero() {
         animate="visible"
       >
         <motion.div variants={fadeUp} className="mb-6">
-          <span className="pill-badge bg-black/5 border border-black/15 text-black">
+          <span className="pill-badge bg-black/5 border border-black/15 text-black inline-flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-black animate-pulse" />
-            Open to AI/ML Internships 2026
+            Open to AI/ML Internships
           </span>
         </motion.div>
 
-        <h1 className="font-serif text-6xl md:text-8xl font-normal tracking-tight text-text-primary leading-tight">
+        <h1 className="font-serif text-6xl md:text-8xl font-normal tracking-tight text-text-primary leading-tight mb-4">
           Premraj's <br />
           Portfolio.
         </h1>
         
         <motion.div variants={fadeUp} className="mb-8">
-          <div className="text-lg sm:text-xl text-text-secondary font-medium h-8">
+          <div className="text-lg sm:text-xl text-text-secondary font-medium h-8 flex items-center">
             <Typewriter
               options={{
                 strings: [
@@ -115,7 +119,8 @@ export default function Hero() {
                 loop: true,
                 delay: 50,
                 deleteSpeed: 30,
-                cursorClassName: 'text-text-primary font-normal',
+                cursor: '|',
+                cursorClassName: 'text-text-primary font-mono ml-0.5 animate-pulse',
               }}
             />
           </div>
@@ -140,7 +145,6 @@ export default function Hero() {
           <button
             className="ghost-btn px-6 py-3 rounded-lg font-semibold text-text-primary text-sm flex items-center gap-2 cursor-pointer"
             onClick={handleResumeDownload}
-            title="Download Resume (Add resume.pdf to public folder)"
           >
             Download Resume <ArrowDown size={16} />
           </button>
