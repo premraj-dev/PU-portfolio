@@ -10,15 +10,13 @@ import {
   Linkedin,
   Send,
   CheckCircle,
+  AlertCircle,
 } from 'lucide-react';
 
-// Initialize EmailJS with your credentials
-// Get these from https://dashboard.emailjs.com/
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID || 'YOUR_SERVICE_ID';
 const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
-// Initialize EmailJS only if credentials are provided
 if (EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY') {
   emailjs.init(EMAILJS_PUBLIC_KEY);
 }
@@ -34,10 +32,23 @@ export default function Contact() {
     setSending(true);
     setError('');
 
-    // Check if EmailJS is configured
+    const form = e.currentTarget;
+
+    // Fallback if EmailJS is not configured in .env yet
     if (EMAILJS_SERVICE_ID === 'YOUR_SERVICE_ID') {
-      setError('Email service not configured. Please contact the site owner.');
+      const formData = new FormData(form);
+      const name = formData.get('name') as string;
+      const subject = formData.get('subject') as string;
+      const message = formData.get('message') as string;
+
+      window.location.href = `mailto:thepremraj01@gmail.com?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(`Hi Premraj,\n\n${message}\n\nBest,\n${name}`)}`;
+
       setSending(false);
+      setSent(true);
+      form.reset();
+      setTimeout(() => setSent(false), 5000);
       return;
     }
 
@@ -45,14 +56,14 @@ export default function Contact() {
       await emailjs.sendForm(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
-        e.currentTarget,
+        form,
         EMAILJS_PUBLIC_KEY
       );
       setSent(true);
-      (e.target as HTMLFormElement).reset();
+      form.reset();
       setTimeout(() => setSent(false), 5000);
     } catch {
-      setError('Failed to send message. Please try again.');
+      setError('Failed to send message via automated service. Please use the direct mail link instead.');
     } finally {
       setSending(false);
     }
@@ -106,7 +117,7 @@ export default function Contact() {
                   href="https://github.com/premraj-dev"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
+                  className="w-10 h-10 rounded-xl bg-black/5 border border-black/10 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/20 transition-all"
                   aria-label="GitHub"
                 >
                   <Github size={18} />
@@ -115,7 +126,7 @@ export default function Contact() {
                   href="https://www.linkedin.com/in/premraj-umap-028035375"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-xl bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
+                  className="w-10 h-10 rounded-xl bg-black/5 border border-black/10 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/20 transition-all"
                   aria-label="LinkedIn"
                 >
                   <Linkedin size={18} />
@@ -134,7 +145,7 @@ export default function Contact() {
                     name="name"
                     type="text"
                     required
-                    className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10"
+                    className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/30 focus:ring-1 focus:ring-black/20"
                     placeholder="Your name"
                   />
                 </div>
@@ -147,7 +158,7 @@ export default function Contact() {
                     name="email"
                     type="email"
                     required
-                    className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10"
+                    className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/30 focus:ring-1 focus:ring-black/20"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -162,7 +173,7 @@ export default function Contact() {
                   name="subject"
                   type="text"
                   required
-                  className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10"
+                  className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/30 focus:ring-1 focus:ring-black/20"
                   placeholder="What's this about?"
                 />
               </div>
@@ -176,7 +187,7 @@ export default function Contact() {
                   name="message"
                   required
                   rows={5}
-                  className="w-full bg-black/2 border border-black/8 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/20 focus:ring-1 focus:ring-black/10"
+                  className="w-full bg-black/5 border border-black/10 rounded-lg px-4 py-3 text-sm text-text-primary placeholder:text-muted focus:outline-none focus:border-black/30 focus:ring-1 focus:ring-black/20"
                   placeholder="Your message..."
                 />
               </div>
@@ -194,13 +205,15 @@ export default function Contact() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="flex items-center gap-2 text-black text-sm"
+                  className="flex items-center gap-2 text-black text-sm font-medium"
                 >
-                  <CheckCircle size={16} /> Message sent successfully!
+                  <CheckCircle size={16} className="text-black" /> Message processed successfully!
                 </motion.div>
               )}
               {error && (
-                <p className="text-black/60 text-sm">{error}</p>
+                <p className="text-red-600 text-sm flex items-center gap-2">
+                  <AlertCircle size={16} /> {error}
+                </p>
               )}
             </form>
           </div>
