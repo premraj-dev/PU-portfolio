@@ -21,27 +21,35 @@ const projects: Project[] = [
     status: 'In Development',
     category: 'In Development',
     description:
-      'AI-powered identity verification & fraud detection platform. OCR, facial verification, fraud analysis, document validation, audit tracking.',
+      'AI-powered identity verification & fraud detection platform. OCR, facial verification, fraud analysis, document validation, and audit tracking.',
     tech: ['Python', 'FastAPI', 'ML', 'OCR', 'Computer Vision', 'PostgreSQL', 'JWT'],
     github: 'https://github.com/premraj-dev',
-    demo: '',
+  },
+  {
+    title: 'Industrial Fault Detection System',
+    status: 'Completed',
+    category: 'ML/AI',
+    description:
+      'Predictive maintenance model analyzing sensor telemetry to detect operational anomalies and prevent equipment failure.',
+    tech: ['Python', 'Scikit-Learn', 'XGBoost', 'Pandas', 'Predictive Maintenance'],
+    github: 'https://github.com/premraj-dev',
   },
   {
     title: 'Crypto Price Prediction System',
     status: 'Completed',
     category: 'ML/AI',
     description:
-      'ML-based crypto forecasting using historical market data and predictive analytics.',
+      'ML-based crypto forecasting using historical market data, moving averages, and predictive analytics.',
     tech: ['Python', 'Scikit-Learn', 'Pandas', 'NumPy', 'Data Analytics'],
     github: 'https://github.com/premraj-dev',
   },
   {
-    title: 'ML Research Project',
+    title: 'Interpretable ML Research',
     status: 'Research',
     category: 'Research',
     description:
-      'Interpretable machine learning research — transparency and explainability of ML models.',
-    tech: ['Python', 'Research', 'Statistics', 'ML'],
+      'Statistical methodology research improving model explainability and decision transparency in high-stakes ML workflows.',
+    tech: ['Python', 'Research', 'Statistics', 'Model Interpretability'],
     github: 'https://github.com/premraj-dev',
   },
 ];
@@ -106,54 +114,58 @@ export default function Projects() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
                   transition={{ duration: 0.3 }}
-                  className="glass-card glass-card-hover p-6 flex flex-col"
+                  className="glass-card glass-card-hover p-6 flex flex-col justify-between"
                 >
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`pill-badge ${statusColor(project.status)}`}>
-                      {project.status === 'In Development' && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className={`pill-badge flex items-center gap-1.5 ${statusColor(project.status)}`}>
+                        {project.status === 'In Development' && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-black animate-pulse" />
+                        )}
+                        {project.status}
+                      </span>
+                    </div>
+
+                    <h3 className="text-lg font-heading font-semibold text-text-primary mb-3">
+                      {project.title}
+                    </h3>
+
+                    <p className="text-text-secondary text-sm leading-relaxed mb-5">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  <div>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.tech.map((t) => (
+                        <span key={t} className="tech-pill">{t}</span>
+                      ))}
+                    </div>
+
+                    <div className="flex items-center gap-3 pt-3 border-t border-black/5">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-text-secondary hover:text-black transition-colors"
+                          aria-label="GitHub Repository"
+                        >
+                          <Github size={18} />
+                        </a>
                       )}
-                      {project.status}
-                    </span>
-                  </div>
-
-                  <h3 className="text-lg font-heading font-semibold text-text-primary mb-3">
-                    {project.title}
-                  </h3>
-
-                  <p className="text-text-secondary text-sm leading-relaxed mb-5 flex-1">
-                    {project.description}
-                  </p>
-
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {project.tech.map((t) => (
-                      <span key={t} className="tech-pill">{t}</span>
-                    ))}
-                  </div>
-
-                  <div className="flex gap-3 pt-2 border-t border-black/5">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-text-secondary hover:text-black transition-colors"
-                        aria-label="GitHub"
-                      >
-                        <Github size={18} />
-                      </a>
-                    )}
-                    {project.demo && (
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-text-secondary hover:text-black transition-colors"
-                        aria-label="Live Demo"
-                      >
-                        <ExternalLink size={18} />
-                      </a>
-                    )}
+                      {project.demo ? (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-text-secondary hover:text-black transition-colors"
+                          aria-label="Live Demo"
+                        >
+                          <ExternalLink size={18} />
+                        </a>
+                      ) : null}
+                    </div>
                   </div>
                 </motion.div>
               ))}
