@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, GraduationCap, Trophy, Users, ChevronDown, ArrowDown, Mail } from 'lucide-react';
+import { MapPin, GraduationCap, Trophy, ChevronDown, ArrowDown, Mail } from 'lucide-react';
 import Particles from '@tsparticles/react';
 import type { ISourceOptions } from '@tsparticles/engine';
 import Typewriter from 'typewriter-effect';
@@ -61,13 +61,11 @@ export default function Hero() {
   };
 
   const handleResumeDownload = () => {
-    // Check if resume exists, if not navigate to a placeholder message
     const resumePath = '/resume.pdf';
     const link = document.createElement('a');
     link.href = resumePath;
     link.download = 'Premraj_Umap_Resume.pdf';
     
-    // Add error handling for missing file
     link.onerror = () => {
       alert('Resume file not found. Please contact for resume.');
     };
@@ -117,6 +115,7 @@ export default function Hero() {
                 loop: true,
                 delay: 50,
                 deleteSpeed: 30,
+                cursorClassName: 'text-text-primary font-normal',
               }}
             />
           </div>
@@ -127,7 +126,7 @@ export default function Hero() {
           className="flex flex-wrap gap-4 sm:gap-6 text-sm text-text-secondary mb-10"
         >
           <span className="flex items-center gap-2"><MapPin size={16} className="text-black" /> Pune, India</span>
-          <span className="flex items-center gap-2"><GraduationCap size={16} className="text-black" /> CGPA 9.54/10</span>
+          <span className="flex items-center gap-2"><GraduationCap size={16} className="text-black" /> CGPA 9.53/10</span>
           <span className="flex items-center gap-2"><Trophy size={16} className="text-black" /> Technical Head</span>
         </motion.div>
 
