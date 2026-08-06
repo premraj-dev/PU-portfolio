@@ -5,7 +5,6 @@ import emailjs from '@emailjs/browser';
 import {
   MapPin,
   Mail,
-  Phone,
   Github,
   Linkedin,
   Send,
@@ -13,10 +12,23 @@ import {
   School,
 } from 'lucide-react';
 
-// [ADD YOUR EMAILJS CREDENTIALS]
-const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+// Pulled from Vercel env vars instead of hardcoded — same pattern as the Supabase fix.
+// Set these under Vercel → Project Settings → Environment Variables:
+//   VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string;
+
+const isEmailConfigured = Boolean(
+  EMAILJS_SERVICE_ID && EMAILJS_TEMPLATE_ID && EMAILJS_PUBLIC_KEY
+);
+
+if (!isEmailConfigured) {
+  console.warn(
+    'EmailJS env vars are missing (VITE_EMAILJS_SERVICE_ID / VITE_EMAILJS_TEMPLATE_ID / VITE_EMAILJS_PUBLIC_KEY). ' +
+      'The contact form will show a "not configured" message until they are set.'
+  );
+}
 
 export default function Contact() {
   const { ref, isVisible } = useScrollReveal();
@@ -29,6 +41,12 @@ export default function Contact() {
     setSending(true);
     setError('');
 
+    if (!isEmailConfigured) {
+      setError('Contact form is temporarily unavailable — please email me directly instead.');
+      setSending(false);
+      return;
+    }
+
     try {
       await emailjs.sendForm(
         EMAILJS_SERVICE_ID,
@@ -39,7 +57,10 @@ export default function Contact() {
       setSent(true);
       (e.target as HTMLFormElement).reset();
       setTimeout(() => setSent(false), 5000);
-    } catch {
+    } catch (err) {
+      // TODO(Premraj): now that this is logged, check devtools console on next failed
+      // send — the real EmailJS error will show up here (status code / message).
+      console.error('EmailJS send failed:', err);
       setError('Failed to send message. Please try again.');
     } finally {
       setSending(false);
@@ -72,7 +93,7 @@ export default function Contact() {
                   <span className="text-text-secondary">Pune, Maharashtra, India</span>
                 </div>
                 <a
-                  href="mailto:premrajumap01@gmail.com"
+                  href="mailto:thepremraj01@gmail.com"
                   className="flex items-center gap-3 text-sm text-text-secondary hover:text-black transition-colors"
                 >
                   <Mail size={16} className="text-black" />
@@ -95,7 +116,7 @@ export default function Contact() {
                   <Github size={18} />
                 </a>
                 <a
-                  href="[www.linkedin.com/in/premraj-umap-028035375]"
+                  href="https://www.linkedin.com/in/premraj-umap-028035375"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-10 h-10 rounded-xl bg-black/3 border border-black/8 flex items-center justify-center text-text-secondary hover:text-black hover:border-black/15 transition-all"
