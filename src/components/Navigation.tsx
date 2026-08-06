@@ -55,7 +55,7 @@ export default function Navigation() {
 
   const downloadResume = () => {
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
+    link.href = '/premraj_umap_resume.pdf';
     link.download = 'Premraj_Umap_Resume.pdf';
     link.click();
   };
