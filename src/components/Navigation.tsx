@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { label: 'About', to: 'about' },
   { label: 'Experience', to: 'experience' },
   { label: 'Work', to: 'projects' },
+  { label: 'Blog', to: 'blog' },
   { label: 'Publications', to: 'research' },
   { label: 'Stack', to: 'skills' },
   { label: 'Get in Touch', to: 'contact' },
