@@ -10,6 +10,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Experience from './components/Experience';
 import ProjectsSection from './components/ProjectsSection';
+import BlogSection from './components/BlogSection';
 import Research from './components/Research';
 import Skills from './components/Skills';
 import Achievements from './components/Achievements';
@@ -17,11 +18,12 @@ import Certifications from './components/Certifications';
 import Leadership from './components/Leadership';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-
 // Admin imports
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+// Blog imports
+import BlogDetail from './pages/BlogDetail';
 
 // Main portfolio page component
 function MainPortfolio({ loaded }: { loaded: boolean }) {
@@ -34,6 +36,7 @@ function MainPortfolio({ loaded }: { loaded: boolean }) {
         <About />
         <Experience />
         <ProjectsSection />
+        <BlogSection />
         <Research />
         <Skills />
         <Achievements />
@@ -48,16 +51,13 @@ function MainPortfolio({ loaded }: { loaded: boolean }) {
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
-
   const particlesInit = useCallback(async () => {
     await loadSlim(tsParticles);
   }, []);
-
   useEffect(() => {
     const timer = setTimeout(() => setLoaded(true), 2000);
     return () => clearTimeout(timer);
   }, []);
-
   return (
     <ThemeProvider>
       <ParticlesProvider init={particlesInit}>
@@ -66,9 +66,11 @@ export default function App() {
             {/* Public Portfolio Route */}
             <Route path="/" element={<MainPortfolio loaded={loaded} />} />
 
+            {/* Blog Detail Route */}
+            <Route path="/blog/:id" element={<BlogDetail />} />
+
             {/* Admin Login Route */}
             <Route path="/admin" element={<AdminLogin />} />
-
             {/* Protected Admin Dashboard Route */}
             <Route
               path="/admin/dashboard"
