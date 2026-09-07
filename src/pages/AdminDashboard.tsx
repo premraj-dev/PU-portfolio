@@ -1,6 +1,7 @@
 import { useState, useEffect, FormEvent, ChangeEvent, CSSProperties } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '../lib/supabaseClient';
+import AdminBlogForm from './AdminBlogForm';
 
 type Project = {
   id: string;
@@ -109,9 +110,15 @@ export default function AdminDashboard() {
   return (
     <div style={styles.page}>
       <div style={styles.header}>
-        <h1 style={styles.heading}>Manage projects</h1>
+        <h1 style={styles.heading}>Admin Dashboard</h1>
         <button onClick={handleLogout} style={styles.logoutBtn}>Log out</button>
       </div>
+
+      <div style={{ maxWidth: 800, margin: '0 auto 2rem' }}>
+        <AdminBlogForm />
+      </div>
+
+      <hr style={{ maxWidth: 800, margin: '2rem auto', borderColor: '#2a2a2e' }} />
 
       <form onSubmit={handleSubmit} style={styles.form}>
         <div style={styles.row}>
